@@ -1,0 +1,5 @@
+services:
+  rqlite:
+    image: rqlite/rqlite:latest
+    ports:
+      - "4001:4001"

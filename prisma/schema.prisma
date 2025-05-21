@@ -1,0 +1,57 @@
+// This Prisma schema is used for testing purposes.
+// It does not impact the consumable driver adapter.
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output   = "../tests/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+
+  tasks Tasks[]
+}
+
+model Tasks {
+  id    String @id @default(cuid())
+  title String
+  userId String
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model DataTypes {
+  id        String   @id @default(cuid())
+  
+  // Numeric types
+  int       Int      // Maps to INTEGER
+  bigInt    BigInt   // Maps to INTEGER
+  float     Float    // Maps to REAL
+  decimal   Decimal  // Maps to DECIMAL
+  
+  // Text types
+  string    String   // Maps to TEXT
+  enumField DataTypesEnum  // Maps to TEXT
+  
+  // Binary data
+  bytes     Bytes    // Maps to BLOB
+  
+  // Date and time
+  dateTime  DateTime // Maps to NUMERIC
+  
+  // Special types
+  boolean   Boolean  // Maps to BOOLEAN
+  json      Json     // Maps to JSONB
+}
+
+enum DataTypesEnum {
+  ONE
+  TWO
+  THREE
+}

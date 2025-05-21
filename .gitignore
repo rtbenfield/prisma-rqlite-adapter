@@ -1,0 +1,11 @@
+# dependencies
+node_modules/
+
+# output files
+dist/
+
+# env variables
+.env
+
+# generated files
+tests/generated/

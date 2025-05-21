@@ -1,0 +1,3 @@
+# exclude test files from npm package
+prisma/
+tests/
